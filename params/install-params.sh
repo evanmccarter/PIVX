@@ -5,9 +5,9 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-export LC_ALL=C.UTF-8
-
 set -eu || exit
+
+export LC_ALL=C.UTF-8
 
 if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"

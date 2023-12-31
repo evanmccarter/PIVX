@@ -83,7 +83,7 @@ function main() {
         shlock -f /tmp/install_params.lock -p $$
     else
         # create lock file
-        eval "exec 200>/tmp/install_params.lock" &&
+        exec 200>/tmp/install_params.lock &&
         # acquire the lock
         flock -n 200
     fi \

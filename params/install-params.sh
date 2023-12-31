@@ -7,7 +7,7 @@
 
 export LC_ALL=C.UTF-8
 
-set -eu
+set -eu || exit
 
 if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"

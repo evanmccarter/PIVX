@@ -6,8 +6,8 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 set -eu || exit
-
 export LC_ALL=C.UTF-8
+
 
 if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"

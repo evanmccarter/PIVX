@@ -73,12 +73,11 @@ EOF
 
 # Use flock to prevent parallel execution.
 function lock() {
-    local lockfile=/tmp/install_params.lock
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        shlock -f ${lockfile} -p $$
+        shlock -f /tmp/install_params.lock -p $$
     else
         # create lock file
-        eval "exec 200>$lockfile"
+        eval "exec 200>/tmp/install_params.lock"
         # acquire the lock
         flock -n 200
     fi

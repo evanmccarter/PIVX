@@ -75,18 +75,12 @@ EOF
 function lock() {
     local lockfile=/tmp/install_params.lock
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        if shlock -f ${lockfile} -p $$; then
-            return 0
-        else
-            return 1
-        fi
+        shlock -f ${lockfile} -p $$
     else
         # create lock file
         eval "exec 200>$lockfile"
         # acquire the lock
-        flock -n 200 \
-            && return 0 \
-            || return 1
+        flock -n 200
     fi
 }
 

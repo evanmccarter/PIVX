@@ -71,18 +71,6 @@ EOF
     fi
 }
 
-# Use flock to prevent parallel execution.
-function lock() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        shlock -f /tmp/install_params.lock -p $$
-    else
-        # create lock file
-        eval "exec 200>/tmp/install_params.lock"
-        # acquire the lock
-        flock -n 200
-    fi
-}
-
 function exit_locked_error {
     echo "Only one instance of install-params.sh can be run at a time." >&2
     exit 1
@@ -90,7 +78,15 @@ function exit_locked_error {
 
 function main() {
 
-    lock \
+    # Use flock to prevent parallel execution.
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        shlock -f /tmp/install_params.lock -p $$
+    else
+        # create lock file
+        eval "exec 200>/tmp/install_params.lock"
+        # acquire the lock
+        flock -n 200
+    fi \
     || exit_locked_error
 
     cat <<EOF

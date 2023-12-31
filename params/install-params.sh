@@ -101,7 +101,7 @@ EOF
     # Now create PARAMS_DIR and insert a README if necessary:
     if ! [ -d "$PARAMS_DIR" ]
     then
-        mkdir -p "$PARAMS_DIR"
+        mkdir -p -- "$PARAMS_DIR"
         README_PATH="$PARAMS_DIR/README"
         cat >> "$README_PATH" <<EOF
 This directory stores common PIVX zkSNARK parameters. Note that it is

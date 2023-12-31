@@ -63,7 +63,7 @@ EOF
         # Check the exit code of the shasum command:
         CHECKSUM_RESULT=$?
         if [ $CHECKSUM_RESULT -eq 0 ]; then
-            cp -v "$filename" "$output"
+            cp -v -- "$filename" "$output"
         else
             echo "Failed to verify parameter checksums!" >&2
             exit 1

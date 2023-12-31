@@ -90,7 +90,7 @@ function exit_locked_error {
 
 function main() {
 
-    lock install-params.sh \
+    lock \
     || exit_locked_error
 
     cat <<EOF

@@ -23,7 +23,9 @@ SAPLING_SPEND_NAME='sapling-spend.params'
 SAPLING_OUTPUT_NAME='sapling-output.params'
 
 SHA256CMD="$(command -v sha256sum || echo shasum)"
+: "${SHA256CMD}"
 SHA256ARGS="$(command -v sha256sum >/dev/null || echo '-a 256')"
+: "${SHA256ARGS}"
 
 pushd () {
     command pushd "$@" > /dev/null

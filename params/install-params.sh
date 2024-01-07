@@ -48,17 +48,17 @@ function install_params {
 
     if ! [ -f "$output" ]
     then
+        {
         if
             command -v sha256sum >/dev/null
         then
-            command sha256sum -c <<EOF
-$expectedhash  $filename
-EOF
+            command sha256sum -c
         else
-            shasum -a 256 -c <<EOF
+            shasum -a 256 -c
+        fi
+        } <<EOF
 $expectedhash  $filename
 EOF
-        fi
 
         # Check the exit code of the shasum command:
         CHECKSUM_RESULT=$?
